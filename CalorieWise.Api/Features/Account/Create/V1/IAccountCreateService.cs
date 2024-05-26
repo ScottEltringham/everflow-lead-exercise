@@ -2,7 +2,7 @@
 {
     public interface IAccountCreateService
     {
-        Task<bool> UserNameIsTaken(string lowerCaseUserName);
+        bool UserNameIsTaken(string lowerCaseUserName);
         Task<bool> CreateNewAccount(Data.Models.Account account);
     }
 }

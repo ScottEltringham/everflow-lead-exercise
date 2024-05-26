@@ -3,14 +3,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CalorieWise.Api.Data.Repositories.Implementation
 {
-    public class UpdateRepository<T>(DbContext context) : IUpdateRepository<T> where T : class
+    public class UpdateRepository<T, TDbContext>(DbContext context) : IUpdateRepository<T, TDbContext> 
+        where T : class
+        where TDbContext : DbContext
     {
         private readonly DbSet<T> _dbSet = context.Set<T>();
 
         public async Task UpdateAsync(T entity)
         {
-            _dbSet.Attach(entity);
-            context.Entry(entity).State = EntityState.Modified;
+            _dbSet.Update(entity);
             await context.SaveChangesAsync();
         }
     }

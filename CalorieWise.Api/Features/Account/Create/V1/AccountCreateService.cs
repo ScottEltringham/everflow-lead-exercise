@@ -3,11 +3,13 @@ using CalorieWise.Api.Data.Repositories.Interfaces;
 
 namespace CalorieWise.Api.Features.Account.Create.V1
 {
-    public class AccountCreateService(ICreateRepository<Data.Models.Account, CalorieWiseDbContext> createRepository, IReadRepository<Data.Models.Account, long, CalorieWiseDbContext> readRepository) : IAccountCreateService
+    public class AccountCreateService(
+        ICreateRepository<Data.Models.Account, CalorieWiseDbContext> createRepository, 
+        IReadRepository<Data.Models.Account, long, CalorieWiseDbContext> readRepository) : IAccountCreateService
     {
         public async Task<bool> CreateNewAccount(Data.Models.Account account)
         {
-            var userNameIsTaken = await UserNameIsTaken(account.Username);
+            var userNameIsTaken = UserNameIsTaken(account.Username);
 
             if (userNameIsTaken)
                 return false;
@@ -17,10 +19,14 @@ namespace CalorieWise.Api.Features.Account.Create.V1
             return true;
         }
 
-        public async Task<bool> UserNameIsTaken(string lowerCaseUserName)
+        public bool UserNameIsTaken(string lowerCaseUserName)
         {
-            var account = await readRepository.GetAllAsync();
-            return account.Any();
+            var query = readRepository.GetAllQueryable();
+            query = query.Where(x => x.Username.ToLower() == lowerCaseUserName);
+
+            var count = query.ToList().Count;
+
+            return count > 0;
         }
     }
 }

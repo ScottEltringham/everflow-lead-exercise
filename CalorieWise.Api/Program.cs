@@ -6,7 +6,7 @@ using CalorieWise.Api.Features.Account.Create.V1;
 using FastEndpoints.Swagger;
 using Microsoft.EntityFrameworkCore;
 
-var builder = WebApplication.CreateBuilder();
+var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<CalorieWiseDbContext>(
     o => 
@@ -28,7 +28,7 @@ builder.Services.AddScoped(typeof(ICreateRepository<,>), typeof(CreateRepository
 builder.Services.AddScoped(typeof(IReadRepository<,,>), typeof(ReadRepository<,,>));
 
 // Add Services
-builder.Services.AddScoped(typeof(IAccountCreateService), typeof(AccountCreateService));
+builder.Services.AddScoped<IAccountCreateService, AccountCreateService>();
 
 builder.Services.AddFastEndpoints();
 
@@ -56,3 +56,8 @@ app.UseFastEndpoints(c =>
 app.UseSwaggerGen();
 
 app.Run();
+
+
+
+
+
