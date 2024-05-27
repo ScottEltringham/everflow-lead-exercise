@@ -3,7 +3,7 @@ using Microsoft.JSInterop;
 using System.Security.Claims;
 using System.Text.Json;
 
-namespace CalorieWise.UI.Authentication
+namespace CalorieWise.UI.Features.Authentication
 {
     public class AuthStateProvider(IJSRuntime js) : AuthenticationStateProvider
     {

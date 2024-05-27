@@ -1,5 +1,5 @@
-using CalorieWise.UI.Authentication;
 using CalorieWise.UI.Components;
+using CalorieWise.UI.Features.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.IdentityModel.Tokens;

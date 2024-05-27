@@ -5,7 +5,7 @@ VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalorieWise.Api", "CalorieWise.Api\CalorieWise.Api.csproj", "{5BCCBFBE-B2DC-4BF9-9E92-090D21479096}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalorieWise.UI", "CalorieWise.UI\CalorieWise.UI.csproj", "{0E0E8F91-5A37-460A-A6F7-B930CE3A002A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalorieWise.UI", "CalorieWise.UI\CalorieWise.UI.csproj", "{0E0E8F91-5A37-460A-A6F7-B930CE3A002A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
