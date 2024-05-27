@@ -1,8 +1,9 @@
 ﻿namespace CalorieWise.Api.Data.Models
 {
+    public record struct AccountId(long Value);
     public class Account
     {
-        public long Id { get; init; }
+        public AccountId Id { get; init; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Username { get; init; }

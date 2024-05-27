@@ -7,7 +7,7 @@ namespace CalorieWise.Api.Features.Account.Login.V1
 {
     public class AccountLoginService(
         IConfiguration configuration,
-        IReadRepository<Data.Models.Account, long, CalorieWiseDbContext> readRepository) : IAccountLoginService
+        IReadRepository<Data.Models.Account, Data.Models.AccountId, CalorieWiseDbContext> readRepository) : IAccountLoginService
     {
         public string VerifyAndGenerateJWTToken(AccountLoginRequest request)
         {

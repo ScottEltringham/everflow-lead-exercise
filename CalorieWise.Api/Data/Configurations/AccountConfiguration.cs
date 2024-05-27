@@ -10,11 +10,18 @@ namespace CalorieWise.Api.Data.Configurations
         {
             entity.HasKey(e => e.Id);
 
-            entity.Property(e => e.Id).UseIdentityColumn();
+            entity.Property(e => e.Id)
+              .HasConversion(id => id.Value, value => new AccountId(value))
+              .UseIdentityColumn();
+
             entity.Property(e => e.FirstName).IsRequired();
+
             entity.Property(e => e.LastName).IsRequired();
+
             entity.Property(e => e.Username).IsRequired();
+
             entity.Property(e => e.Password).IsRequired();
+
             entity.Property(e => e.DateCreated).IsRequired();
         }
     }
