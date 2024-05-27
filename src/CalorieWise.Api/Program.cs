@@ -1,4 +1,5 @@
 global using FastEndpoints;
+using CalorieWise.Api.Common.Authentication;
 using CalorieWise.Api.Common.Processors;
 using CalorieWise.Api.Data;
 using CalorieWise.Api.Data.Repositories.Implementation;
@@ -31,6 +32,7 @@ builder.Services.AddScoped(typeof(ICreateRepository<,>), typeof(CreateRepository
 builder.Services.AddScoped(typeof(IReadRepository<,,>), typeof(ReadRepository<,,>));
 
 // Add Services
+builder.Services.AddScoped<IJWTTokenGenerator, JWTTokenGenerator>();
 builder.Services.AddScoped<IAccountCreateService, AccountCreateService>();
 builder.Services.AddScoped<IAccountLoginService, AccountLoginService>();
 
