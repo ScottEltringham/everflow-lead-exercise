@@ -1,4 +1,4 @@
-﻿using CalorieWise.Api.Authentication;
+﻿using CalorieWise.Api.Common.Authentication;
 using CalorieWise.Api.Data;
 using CalorieWise.Api.Data.Repositories.Interfaces;
 using FastEndpoints.Security;

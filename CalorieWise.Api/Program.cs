@@ -1,4 +1,5 @@
 global using FastEndpoints;
+using CalorieWise.Api.Common.Processors;
 using CalorieWise.Api.Data;
 using CalorieWise.Api.Data.Repositories.Implementation;
 using CalorieWise.Api.Data.Repositories.Interfaces;
@@ -55,9 +56,15 @@ app.UseAuthentication()
     .UseAuthorization()
     .UseFastEndpoints(c => 
     {
+        c.Endpoints.RoutePrefix = "api";
         c.Versioning.Prefix = "v";
         c.Versioning.PrependToRoute = true;
         c.Versioning.DefaultVersion = 1;
+        c.Endpoints.Configurator = ep =>
+        {
+            ep.PreProcessor<RequestLogger>(Order.Before);
+            ep.PostProcessor<ExceptionProcessor>(Order.Before);
+        };
     });
 
 app.UseSwaggerGen();

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-namespace CalorieWise.Api.Authentication
+namespace CalorieWise.Api.Common.Authentication
 {
     public static class PasswordHelper
     {

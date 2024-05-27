@@ -29,7 +29,7 @@
     private string username { get; set; } = String.Empty;
     private string password { get; set; } = String.Empty;
     private HttpClient httpClient = new HttpClient();
-    private string baseUrl = "https://localhost:5200/v1"; // Your API base URL
+    private string baseUrl = "https://localhost:5200/api/v1"; // Your API base URL
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
