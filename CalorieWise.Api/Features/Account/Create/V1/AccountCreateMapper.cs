@@ -1,4 +1,4 @@
-﻿using CalorieWise.Api.Common;
+﻿using CalorieWise.Api.Authentication;
 
 namespace CalorieWise.Api.Features.Account.Create.V1
 {

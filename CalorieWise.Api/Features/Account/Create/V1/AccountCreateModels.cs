@@ -1,6 +1,4 @@
 ﻿using FluentValidation;
-using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace CalorieWise.Api.Features.Account.Create.V1
 {

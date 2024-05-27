@@ -3,6 +3,8 @@ using CalorieWise.Api.Data;
 using CalorieWise.Api.Data.Repositories.Implementation;
 using CalorieWise.Api.Data.Repositories.Interfaces;
 using CalorieWise.Api.Features.Account.Create.V1;
+using CalorieWise.Api.Features.Account.Login.V1;
+using FastEndpoints.Security;
 using FastEndpoints.Swagger;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,12 +31,15 @@ builder.Services.AddScoped(typeof(IReadRepository<,,>), typeof(ReadRepository<,,
 
 // Add Services
 builder.Services.AddScoped<IAccountCreateService, AccountCreateService>();
+builder.Services.AddScoped<IAccountLoginService, AccountLoginService>();
 
-builder.Services.AddFastEndpoints();
+builder.Services
+    .AddAuthenticationJwtBearer(s => s.SigningKey = builder.Configuration.GetValue<string>("JWTSigningKey"))
+    .AddAuthorization()
+    .AddFastEndpoints();
 
 builder.Services.SwaggerDocument(o =>
 {
-    o.EnableJWTBearerAuth = false;
     o.MaxEndpointVersion = 1;
     o.DocumentSettings = s =>
     {
@@ -46,12 +51,14 @@ builder.Services.SwaggerDocument(o =>
 
 var app = builder.Build();
 
-app.UseFastEndpoints(c => 
-{
-    c.Versioning.Prefix = "v";
-    c.Versioning.PrependToRoute = true;
-    c.Versioning.DefaultVersion = 1;
-});
+app.UseAuthentication()
+    .UseAuthorization()
+    .UseFastEndpoints(c => 
+    {
+        c.Versioning.Prefix = "v";
+        c.Versioning.PrependToRoute = true;
+        c.Versioning.DefaultVersion = 1;
+    });
 
 app.UseSwaggerGen();
 
