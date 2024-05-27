@@ -2,7 +2,7 @@
 
 namespace CalorieWise.Api.Features.Account.Create.V1
 {
-    internal sealed class AccountCreateEndpoint(IAccountCreateService service) : Endpoint<AccountCreateRequest, Results<Ok<AccountCreateResponse>, ProblemDetails>, AccountCreateMapper>
+    public class AccountCreateEndpoint(IAccountCreateService service) : Endpoint<AccountCreateRequest, Results<Ok<AccountCreateResponse>, ProblemDetails>, AccountCreateMapper>
     {
         public override void Configure()
         {

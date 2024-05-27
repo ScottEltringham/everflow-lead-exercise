@@ -73,7 +73,7 @@ app.UseSwaggerGen();
 
 app.Run();
 
-
-
-
-
+namespace CalorieWise.Api
+{
+    public abstract class Program;
+}
