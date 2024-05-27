@@ -1,0 +1,60 @@
+﻿@page "/"
+@using Authentication
+@using Microsoft.AspNetCore.Components.Authorization;
+@using System.Net.Http
+@using System.Net.Http.Json
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IJSRuntime JS
+@inject NavigationManager Navigation
+@rendermode InteractiveServer
+
+<PageTitle>Login</PageTitle>
+
+<h3>Login</h3>
+
+<div>
+    <label for="username">Username:</label>
+    <input @bind="username" id="username" />
+</div>
+<div>
+    <label for="password">Password:</label>
+    <input @bind="password" id="password" type="password" />
+</div>
+<button @onclick="Login">Login</button>
+
+@code {
+    private string username;
+    private string password;
+    private HttpClient httpClient = new HttpClient();
+    private string baseUrl = "https://localhost:5200/v1"; // Your API base URL
+
+    private async Task Login()
+    {
+        var loginModel = new { Username = username, Password = password };
+        var response = await httpClient.PostAsJsonAsync($"{baseUrl}/account/login", loginModel);
+
+        if (response.IsSuccessStatusCode)
+        {
+            var tokenResponse = await response.Content.ReadFromJsonAsync<TokenResponse>();
+            if (tokenResponse != null)
+            {
+                await JS.InvokeVoidAsync("localStorage.setItem", "authToken", tokenResponse.Token);
+                ((AuthStateProvider)AuthenticationStateProvider).NotifyUserAuthentication(tokenResponse.Token);
+
+                // Redirect user to authenticated page
+                Navigation.NavigateTo("/securepage");
+            }
+        }
+        else
+        {
+            // Handle failed login
+            // Example: Display error message
+        }
+    }
+
+    public class TokenResponse
+    {
+        public string Username { get; set; }
+        public string Token { get; set; }
+    }
+}

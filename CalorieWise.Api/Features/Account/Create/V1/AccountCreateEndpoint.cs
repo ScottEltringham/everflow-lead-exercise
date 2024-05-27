@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.Data.SqlClient;
 
 namespace CalorieWise.Api.Features.Account.Create.V1
 {

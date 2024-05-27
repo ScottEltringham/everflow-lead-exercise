@@ -1,0 +1,24 @@
+﻿@page "/securepage"
+@using Authentication
+@using Microsoft.AspNetCore.Components.Authorization;
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@rendermode InteractiveServer
+
+<p>This is a secure page.</p>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var authState = await ((AuthStateProvider)AuthenticationStateProvider).GetAuthenticationStateAsync();
+            var user = authState.User;
+
+            if (!user.Identity.IsAuthenticated)
+            {
+                NavigationManager.NavigateTo("/");
+            }
+        }
+    }
+}
