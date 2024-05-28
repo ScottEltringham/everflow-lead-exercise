@@ -1,5 +1,4 @@
-﻿using CalorieWise.Api.Data;
-using CalorieWise.Api.Features.Account.Create.V1;
+﻿using CalorieWise.Api.Features.Account.Create.V1;
 using CalorieWise.Api.IntegrationTests.Helpers;
 using FastEndpoints;
 using FastEndpoints.Testing;
