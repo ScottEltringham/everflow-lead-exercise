@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging.Configuration;
-using System.Net;
+﻿using System.Net;
 
 namespace CalorieWise.Api.Common.Processors
 {

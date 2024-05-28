@@ -4,8 +4,6 @@ using CalorieWise.Api.IntegrationTests.Helpers;
 using FastEndpoints;
 using FastEndpoints.Testing;
 using FluentAssertions;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.Extensions.DependencyInjection;
 using System.Net;
 using Xunit;
 using ProblemDetails = FastEndpoints.ProblemDetails;
