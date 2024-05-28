@@ -54,12 +54,6 @@ builder.Services.SwaggerDocument(o =>
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var context = scope.ServiceProvider.GetRequiredService<CalorieWiseDbContext>();
-    context.Database.EnsureCreated();
-}
-
 app.UseAuthentication()
     .UseAuthorization()
     .UseFastEndpoints(c => 

@@ -2,6 +2,7 @@
 using FastEndpoints.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace CalorieWise.Api.IntegrationTests.Helpers
 {
@@ -10,6 +11,11 @@ namespace CalorieWise.Api.IntegrationTests.Helpers
         private readonly string _connectionString = "server=localhost;Database=CalorieWise.IntegrationTests;Trusted_Connection=True;TrustServerCertificate=True;";
         private IServiceProvider _serviceProvider;
 
+        protected override async Task SetupAsync()
+        {
+            var context = _serviceProvider.GetRequiredService<CalorieWiseDbContext>();
+            await context.Database.EnsureCreatedAsync();
+        }
 
         protected override void ConfigureServices(IServiceCollection services)
         {
@@ -31,7 +37,6 @@ namespace CalorieWise.Api.IntegrationTests.Helpers
                         sqlOptions.MigrationsAssembly("CalorieWise.Api");
                     });
             });
-
 
             _serviceProvider = services.BuildServiceProvider();
         }

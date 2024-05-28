@@ -8,7 +8,7 @@ namespace CalorieWise.Api.Features.Account.Login.V1
         public string Password { get; init; } = string.Empty;
     }
 
-    internal sealed class AccountLoginValidator : Validator<AccountLoginRequest>
+    public sealed class AccountLoginValidator : Validator<AccountLoginRequest>
     {
         public AccountLoginValidator()
         {
@@ -18,5 +18,11 @@ namespace CalorieWise.Api.Features.Account.Login.V1
             RuleFor(x => x.Password)
                 .NotEmpty().WithMessage("Password is required");
         }
+    }
+
+    public class AccountLoginResponse
+    {
+        public string Username { get; init; } = string.Empty;
+        public string Token { get; init; } = string.Empty;
     }
 }

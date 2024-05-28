@@ -4,7 +4,7 @@ using CalorieWise.Api.Data.Repositories.Interfaces;
 
 namespace CalorieWise.Api.Features.Account.Login.V1
 {
-    public class AccountLoginService(
+    public sealed class AccountLoginService(
         IJWTTokenGenerator jwtTokenGenerator,
         IReadRepository<Data.Models.Account, Data.Models.AccountId, CalorieWiseDbContext> readRepository) : IAccountLoginService
     {

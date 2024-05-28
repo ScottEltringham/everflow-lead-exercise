@@ -2,7 +2,7 @@
 
 namespace CalorieWise.Api.Features.Account.Create.V1
 {
-    public class AccountCreateMapper : Mapper<AccountCreateRequest, AccountCreateResponse, Data.Models.Account>
+    public sealed class AccountCreateMapper : Mapper<AccountCreateRequest, AccountCreateResponse, Data.Models.Account>
     {
         public override Data.Models.Account ToEntity(AccountCreateRequest r)
         {

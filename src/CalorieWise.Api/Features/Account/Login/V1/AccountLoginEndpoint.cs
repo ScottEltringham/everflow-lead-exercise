@@ -1,6 +1,9 @@
-﻿namespace CalorieWise.Api.Features.Account.Login.V1
+﻿using CalorieWise.Api.Features.Account.Create.V1;
+using Microsoft.AspNetCore.Http.HttpResults;
+
+namespace CalorieWise.Api.Features.Account.Login.V1
 {
-    internal sealed class AccountLoginEndpoint(IAccountLoginService service) : Endpoint<AccountLoginRequest>
+    public sealed class AccountLoginEndpoint(IAccountLoginService service) : Endpoint<AccountLoginRequest, Results<Ok<AccountLoginResponse>, ProblemDetails>>
     {
         public override void Configure()
         {
@@ -12,20 +15,21 @@
             });
         }
 
-        public override async Task HandleAsync(AccountLoginRequest r, CancellationToken c)
+        public override async Task<Results<Ok<AccountLoginResponse>, ProblemDetails>> ExecuteAsync(AccountLoginRequest r, CancellationToken c)
         {
             var jwtToken = service.VerifyAndGenerateJWTToken(r);
 
             if (jwtToken != string.Empty)
             {
-                await SendAsync(new
+                return TypedResults.Ok(new AccountLoginResponse
                 {
-                    r.Username,
+                    Username = r.Username,
                     Token = jwtToken
                 });
             }
 
-            ThrowError("The supplied credentials are invalid");
+            AddError("The supplied credentials are invalid");
+            return new ProblemDetails(ValidationFailures);
         }
     }
 }

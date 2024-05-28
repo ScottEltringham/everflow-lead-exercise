@@ -2,7 +2,7 @@
 
 namespace CalorieWise.Api.Features.Account.Create.V1
 {
-    public class AccountCreateRequest
+    public sealed class AccountCreateRequest
     {
         public string FirstName { get; init; } = string.Empty;
         public string LastName { get; init; } = string.Empty;
@@ -10,12 +10,12 @@ namespace CalorieWise.Api.Features.Account.Create.V1
         public string Password { get; init; } = string.Empty;
     }
 
-    public class AccountCreateResponse
+    public sealed class AccountCreateResponse
     {
         public string Message { get; set; } = string.Empty;
     }
 
-    public class AccountCreateValidator : Validator<AccountCreateRequest>
+    public sealed class AccountCreateValidator : Validator<AccountCreateRequest>
     {
         public AccountCreateValidator()
         {

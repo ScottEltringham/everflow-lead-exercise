@@ -4,7 +4,7 @@ using CalorieWise.Api.Data.Repositories.Interfaces;
 
 namespace CalorieWise.Api.Features.Account.Create.V1
 {
-    public class AccountCreateService(
+    public sealed class AccountCreateService(
         ICreateRepository<Data.Models.Account, CalorieWiseDbContext> createRepository, 
         IReadRepository<Data.Models.Account, AccountId, CalorieWiseDbContext> readRepository) : IAccountCreateService
     {

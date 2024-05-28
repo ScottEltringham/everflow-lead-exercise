@@ -11,9 +11,8 @@ namespace CalorieWise.Api.IntegrationTests.Features.Account.Create.V1
 {
     public class AccountCreateEndpointTests(CalorieWiseApiFixture app) : TestBase<CalorieWiseApiFixture>
     {
-
         [Fact]
-        public async Task CreateAccount_ShouldReturnOk_WhenAccountIsCreated()
+        public async Task AccountCreateEndpoint_ShouldReturnOk_WhenAccountIsCreated()
         {
             var (httpResponse, dataResponse) = await app.Client.POSTAsync<AccountCreateEndpoint, AccountCreateRequest, AccountCreateResponse>(new()
             {
@@ -29,7 +28,7 @@ namespace CalorieWise.Api.IntegrationTests.Features.Account.Create.V1
         }
 
         [Fact]
-        public async Task CreateAccount_ShouldReturnProblemDetails_WhenUsernameAlreadyExists()
+        public async Task AccountCreateEndpoint_ShouldReturnProblemDetails_WhenUsernameAlreadyExists()
         {
             AccountCreateRequest request = new()
             {
@@ -39,7 +38,7 @@ namespace CalorieWise.Api.IntegrationTests.Features.Account.Create.V1
                 Password = "Test123!"
             };
 
-            await app.Client.POSTAsync<AccountCreateEndpoint, AccountCreateRequest, ProblemDetails>(request);
+            await app.Client.POSTAsync<AccountCreateEndpoint, AccountCreateRequest, AccountCreateResponse>(request);
 
             var (httpResponse, dataResponse) = await app.Client.POSTAsync<AccountCreateEndpoint, AccountCreateRequest, ProblemDetails>(request);
 
