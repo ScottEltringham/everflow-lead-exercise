@@ -9,5 +9,7 @@
         public string Username { get; init; }
         public string Password { get; set; }
         public DateTime DateCreated { get; set; }
+
+        public ICollection<Meal> Meals { get; set; } = [];
     }
 }
