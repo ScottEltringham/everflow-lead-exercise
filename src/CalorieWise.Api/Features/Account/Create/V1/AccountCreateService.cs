@@ -10,7 +10,7 @@ namespace CalorieWise.Api.Features.Account.Create.V1
     {
         public async Task<bool> CreateNewAccount(Data.Models.Account account)
         {
-            var userNameIsTaken = UserNameIsTaken(account.Username);
+            var userNameIsTaken = UserNameIsTaken(account.Username.ToLower());
 
             if (userNameIsTaken)
                 return false;

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging.Configuration;
+using System.Net;
 
 namespace CalorieWise.Api.Common.Processors
 {
@@ -7,21 +8,26 @@ namespace CalorieWise.Api.Common.Processors
         public async Task PostProcessAsync(IPostProcessorContext context, CancellationToken ct)
         {
 
-            if (!context.HasExceptionOccurred)
+            if (!context.HasExceptionOccurred || context.HttpContext.Response.StatusCode == (int)HttpStatusCode.OK)
                 return;
 
-            var logger = context.HttpContext.Resolve<ILogger<IPreProcessorContext>>();
-
-            logger.LogInformation($"{DateTime.Now:MM/dd/yyyy H:mm:ss.fff} - An unhandled exception occurred: {context.ExceptionDispatchInfo.SourceException.Message}");
-
-            var response = new
+            if (context.HttpContext.Response.StatusCode != (int)HttpStatusCode.BadRequest)
             {
-                Message = "An unexpected error occurred. Please try again later.",
-                Error = context.ExceptionDispatchInfo.SourceException.Message
-            };
+                var logger = context.HttpContext.Resolve<ILogger<IPreProcessorContext>>();
 
-            context.MarkExceptionAsHandled();
-            await context.HttpContext.Response.SendAsync(response, 500);
+                logger.LogInformation($"{DateTime.Now:MM/dd/yyyy H:mm:ss.fff} - An unhandled exception occurred: {context.ExceptionDispatchInfo.SourceException.Message}");
+
+                var response = new
+                {
+                    Message = "An unexpected error occurred. Please try again later.",
+                    Error = context.ExceptionDispatchInfo.SourceException.Message
+                };
+
+                context.MarkExceptionAsHandled();
+                await context.HttpContext.Response.SendAsync(response, (int)HttpStatusCode.InternalServerError);
+
+                return;
+            }
 
             return;
         }
