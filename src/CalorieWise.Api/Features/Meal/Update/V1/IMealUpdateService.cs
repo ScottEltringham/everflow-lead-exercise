@@ -2,6 +2,6 @@
 {
     public interface IMealUpdateService
     {
-        Task<Data.Models.Meal> UpdateMeal(MealUpdateRequest r)
+        Task<Data.Models.Meal> UpdateMeal(MealUpdateRequest r);
     }
 }

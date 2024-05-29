@@ -22,12 +22,9 @@ namespace CalorieWise.Api.Features.Account.Create.V1
 
         public bool UserNameIsTaken(string lowerCaseUserName)
         {
-            var query = readRepository.GetAllQueryable();
-            query = query.Where(x => x.Username.ToLower() == lowerCaseUserName);
+            var query = readRepository.GetAllQueryable(x => x.Username.ToLower() == lowerCaseUserName);
 
-            var count = query.ToList().Count;
-
-            return count > 0;
+            return query.ToList().Count > 0;
         }
     }
 }
