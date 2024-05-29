@@ -1,5 +1,4 @@
 ﻿using CalorieWise.Api.Data.Repositories.Interfaces;
-using CalorieWise.Api.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace CalorieWise.Api.UnitTest.Fakes

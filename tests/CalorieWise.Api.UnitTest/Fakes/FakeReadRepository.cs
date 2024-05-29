@@ -1,20 +1,17 @@
 ﻿using CalorieWise.Api.Data.Repositories.Interfaces;
-using CalorieWise.Api.Data;
-using CalorieWise.Api.Data.Models;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using System.Linq;
 
 namespace CalorieWise.Api.UnitTest.Fakes
 {
-    public class FakeReadRepository<T, TId, TDbContext>(List<T> entitities) : IReadRepository<T, TId, TDbContext>
+    public class FakeReadRepository<T, TId, TDbContext>(List<T> entities) : IReadRepository<T, TId, TDbContext>
         where T : class, IEntity<TId>
         where TId : struct
         where TDbContext : DbContext
     {
-        private readonly List<T> Entities = entitities;
+        private readonly List<T> Entities = entities;
 
         public async Task<T?> GetByIdAsync(TId id)
         {
