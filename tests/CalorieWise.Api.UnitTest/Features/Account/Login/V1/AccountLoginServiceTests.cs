@@ -1,23 +1,24 @@
 ﻿using CalorieWise.Api.Common.Authentication;
+using CalorieWise.Api.Data;
 using CalorieWise.Api.Features.Account.Login.V1;
 using CalorieWise.Api.UnitTest.Fakes;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace CalorieWise.Api.UnitTest.Features.Account.Create.V1
+namespace CalorieWise.Api.UnitTest.Features.Account.Login.V1
 {
     [TestClass]
     public class AccountLoginServiceTests
     {
         private FakeJWTTokenGenerator _fakeJWTTokenGenerator;
-        private FakeReadRepository _fakeReadRepository;
+        private FakeReadRepository<Data.Models.Account, Data.Models.AccountId, CalorieWiseDbContext> _fakeReadRepository;
         private AccountLoginService _accountLoginService;
 
         [TestInitialize]
         public void TestInitialize()
         {
             _fakeJWTTokenGenerator = new FakeJWTTokenGenerator();
-            _fakeReadRepository = new FakeReadRepository([]);
+            _fakeReadRepository = new FakeReadRepository<Data.Models.Account, Data.Models.AccountId, CalorieWiseDbContext>([]);
             _accountLoginService = new AccountLoginService(_fakeJWTTokenGenerator, _fakeReadRepository);
         }
 
@@ -35,7 +36,7 @@ namespace CalorieWise.Api.UnitTest.Features.Account.Create.V1
         public void VerifyAndGenerateJWTToken_ShouldReturnJWTToken_IfCredentialsAreValid()
         {
             var account = new Data.Models.Account { Username = "testuser", Password = PasswordHelper.HashPassword("correctpassword") };
-            _fakeReadRepository = new FakeReadRepository([account]);
+            _fakeReadRepository = new FakeReadRepository<Data.Models.Account, Data.Models.AccountId, CalorieWiseDbContext>([account]);
             _accountLoginService = new AccountLoginService(_fakeJWTTokenGenerator, _fakeReadRepository);
 
             var request = new AccountLoginRequest { Username = "testuser", Password = "correctpassword" };
@@ -63,7 +64,7 @@ namespace CalorieWise.Api.UnitTest.Features.Account.Create.V1
         {
             // Arrange
             var account = new Data.Models.Account { Username = "testuser", Password = PasswordHelper.HashPassword("correctpassword") };
-            _fakeReadRepository = new FakeReadRepository([account]);
+            _fakeReadRepository = new FakeReadRepository<Data.Models.Account, Data.Models.AccountId, CalorieWiseDbContext>([account]);
             _accountLoginService = new AccountLoginService(_fakeJWTTokenGenerator, _fakeReadRepository);
 
             var request = new AccountLoginRequest { Username = "testuser", Password = "wrongpassword" };
@@ -80,7 +81,7 @@ namespace CalorieWise.Api.UnitTest.Features.Account.Create.V1
         {
             // Arrange
             var account = new Data.Models.Account { Username = "testuser", Password = PasswordHelper.HashPassword("correctpassword") };
-            _fakeReadRepository = new FakeReadRepository([account]);
+            _fakeReadRepository = new FakeReadRepository<Data.Models.Account, Data.Models.AccountId, CalorieWiseDbContext>([account]);
             _accountLoginService = new AccountLoginService(_fakeJWTTokenGenerator, _fakeReadRepository);
 
             var request = new AccountLoginRequest { Username = "testuser", Password = "correctpassword" };

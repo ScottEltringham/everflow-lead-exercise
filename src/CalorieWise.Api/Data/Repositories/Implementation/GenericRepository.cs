@@ -10,7 +10,7 @@ namespace CalorieWise.Api.Data.Repositories.Implementation
         IReadRepository<T, TId, TDbContext> readRepository,
         IUpdateRepository<T, TDbContext> updateRepository,
         IDeleteRepository<TId, TDbContext> deleteRepository) : IGenericRepository<T, TId, TDbContext>
-        where T : class 
+        where T : class, IEntity<TId>
         where TId : struct
         where TDbContext : DbContext
     {

@@ -1,15 +1,18 @@
 ﻿using CalorieWise.Api.Data.Repositories.Interfaces;
 using CalorieWise.Api.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace CalorieWise.Api.UnitTest.Fakes
 {
-    public class FakeCreateRepository : ICreateRepository<Data.Models.Account, CalorieWiseDbContext>
+    public class FakeCreateRepository<T, TDbContext> : ICreateRepository<T, TDbContext>
+        where T : class
+        where TDbContext : DbContext
     {
-        public List<Data.Models.Account> Accounts = [];
+        public List<T> Entities = [];
 
-        public Task AddAsync(Data.Models.Account account)
+        public Task AddAsync(T entity)
         {
-            Accounts.Add(account);
+            Entities.Add(entity);
             return Task.CompletedTask;
         }
     }

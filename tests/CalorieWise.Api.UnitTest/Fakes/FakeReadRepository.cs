@@ -5,27 +5,31 @@ using FluentAssertions;
 using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using System.Linq;
 
 namespace CalorieWise.Api.UnitTest.Fakes
 {
-    public class FakeReadRepository(List<Account> accounts) : IReadRepository<Account, AccountId, CalorieWiseDbContext>
+    public class FakeReadRepository<T, TId, TDbContext>(List<T> entitities) : IReadRepository<T, TId, TDbContext>
+        where T : class, IEntity<TId>
+        where TId : struct
+        where TDbContext : DbContext
     {
-        public async Task<Account?> GetByIdAsync(AccountId id)
+        private readonly List<T> Entities = entitities;
+
+        public async Task<T?> GetByIdAsync(TId id)
         {
             await Task.CompletedTask;
 
-            var account = accounts.FirstOrDefault(x => x.Id.Equals(id));
-            return account;
+            var entity = Entities.FirstOrDefault(x => x.Id.Equals(id));
+            return entity;
         }
 
-        public IQueryable<Account> GetAllQueryable(
-            Expression<Func<Account, bool>>? filter = null,
-            Func<IQueryable<Account>, IIncludableQueryable<Account, object>>? include = null)
+        public IQueryable<T> GetAllQueryable(Expression<Func<T, bool>>? filter = null, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null)
         {
-            IQueryable<Account> queryable = accounts.AsQueryable();
+            IQueryable<T> queryable = Entities.AsQueryable();
 
             queryable = queryable.AsNoTracking();
-
+             
             if (include != null)
             {
                 queryable = include(queryable);
@@ -38,7 +42,5 @@ namespace CalorieWise.Api.UnitTest.Fakes
 
             return queryable;
         }
-
-
     }
 }

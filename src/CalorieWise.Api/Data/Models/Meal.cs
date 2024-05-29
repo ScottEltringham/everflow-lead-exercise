@@ -1,7 +1,9 @@
-﻿namespace CalorieWise.Api.Data.Models
+﻿using CalorieWise.Api.Data.Repositories.Interfaces;
+
+namespace CalorieWise.Api.Data.Models
 { 
     public record struct MealId(long Value);
-    public class Meal
+    public class Meal : IEntity<MealId>
     {
         public MealId Id { get; init; }
 

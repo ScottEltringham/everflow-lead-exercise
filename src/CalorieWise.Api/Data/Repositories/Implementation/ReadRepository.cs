@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 namespace CalorieWise.Api.Data.Repositories.Implementation
 {
     public class ReadRepository<T, TId, TDbContext>(TDbContext context) : IReadRepository<T, TId, TDbContext> 
-        where T : class
+        where T : class, IEntity<TId>
         where TId : struct
         where TDbContext : DbContext
     {

@@ -7,6 +7,9 @@ using CalorieWise.Api.Data.Repositories.Interfaces;
 using CalorieWise.Api.Features.Account.Create.V1;
 using CalorieWise.Api.Features.Account.Login.V1;
 using CalorieWise.Api.Features.Meal.Create.V1;
+using CalorieWise.Api.Features.Meal.Delete.V1;
+using CalorieWise.Api.Features.Meal.ReadAll.V1;
+using CalorieWise.Api.Features.Meal.Update.V1;
 using FastEndpoints.Security;
 using FastEndpoints.Swagger;
 using Microsoft.EntityFrameworkCore;
@@ -34,9 +37,14 @@ builder.Services.AddScoped(typeof(IReadRepository<,,>), typeof(ReadRepository<,,
 
 // Add Services
 builder.Services.AddScoped<IJWTTokenGenerator, JWTTokenGenerator>();
+
 builder.Services.AddScoped<IAccountCreateService, AccountCreateService>();
 builder.Services.AddScoped<IAccountLoginService, AccountLoginService>();
+
 builder.Services.AddScoped<IMealCreateService, MealCreateService>();
+builder.Services.AddScoped<IMealReadAllService, MealReadAllService>();
+builder.Services.AddScoped<IMealUpdateService, MealUpdateService>();
+builder.Services.AddScoped<IMealDeleteService, MealDeleteService>();
 
 builder.Services
     .AddAuthenticationJwtBearer(s => s.SigningKey = builder.Configuration.GetValue<string>("JWTSigningKey"))
