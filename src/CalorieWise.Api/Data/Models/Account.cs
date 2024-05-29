@@ -1,5 +1,4 @@
 ﻿using CalorieWise.Api.Data.Repositories.Interfaces;
-using System.Security.Cryptography;
 
 namespace CalorieWise.Api.Data.Models
 {

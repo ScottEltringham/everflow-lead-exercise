@@ -1,7 +1,4 @@
-﻿using FastEndpoints;
-using Microsoft.Extensions.Logging;
-
-namespace CalorieWise.Api.Common.Processors
+﻿namespace CalorieWise.Api.Common.Processors
 {
     public class RequestLogger : IGlobalPreProcessor
     {

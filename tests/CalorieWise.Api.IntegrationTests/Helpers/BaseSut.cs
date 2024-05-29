@@ -1,5 +1,4 @@
-﻿using CalorieWise.Api.Common.Authentication;
-using CalorieWise.Api.Data;
+﻿using CalorieWise.Api.Data;
 using FastEndpoints.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;

@@ -1,6 +1,4 @@
-﻿using CalorieWise.Api.Data.Models;
-
-namespace CalorieWise.Api.Features.Meal.ReadAll.V1
+﻿namespace CalorieWise.Api.Features.Meal.ReadAll.V1
 {
     public sealed class MealReadAllRequest
     {

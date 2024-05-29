@@ -1,5 +1,4 @@
-﻿using CalorieWise.Api.Features.Account.Create.V1;
-using Microsoft.AspNetCore.Http.HttpResults;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace CalorieWise.Api.Features.Account.Login.V1
 {

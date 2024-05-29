@@ -2,7 +2,6 @@
 using CalorieWise.Api.Features.Account.Create.V1;
 using CalorieWise.Api.UnitTest.Fakes;
 using FluentAssertions;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CalorieWise.Api.UnitTest.Features.Account.Create.V1
