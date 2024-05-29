@@ -24,7 +24,7 @@ namespace CalorieWise.Api.IntegrationTests.Features.Account.Create.V1
 
             httpResponse.StatusCode.Should().Be(HttpStatusCode.OK);
             dataResponse.Should().NotBeNull();
-            dataResponse.Message.Should().Be("Account created AccountId { Value = 1 }");
+            dataResponse.Message.Should().Be("Account created AccountId { Value = 2 }");
         }
 
         [Fact]
