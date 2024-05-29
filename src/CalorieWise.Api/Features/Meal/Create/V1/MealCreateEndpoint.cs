@@ -1,9 +1,6 @@
-﻿using CalorieWise.Api.Features.Account.Create.V1;
-using Microsoft.Identity.Client;
-
-namespace CalorieWise.Api.Features.Meal.Create.V1
+﻿namespace CalorieWise.Api.Features.Meal.Create.V1
 {
-    public sealed class MealUpdateEndpoint(IMealCreateService service) : Endpoint<MealCreateRequest, MealCreateResponse, MealUpdateMapper>
+    public sealed class MealCreateEndpoint(IMealCreateService service) : Endpoint<MealCreateRequest, MealCreateResponse, MealUpdateMapper>
     {
         public override void Configure()
         {

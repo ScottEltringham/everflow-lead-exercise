@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CalorieWise.Api.Data.Repositories.Implementation
 {
-    public class UpdateRepository<T, TDbContext>(DbContext context) : IUpdateRepository<T, TDbContext> 
+    public class UpdateRepository<T, TDbContext>(TDbContext context) : IUpdateRepository<T, TDbContext> 
         where T : class
         where TDbContext : DbContext
     {

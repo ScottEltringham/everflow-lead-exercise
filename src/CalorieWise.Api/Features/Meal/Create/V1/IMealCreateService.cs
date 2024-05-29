@@ -2,6 +2,6 @@
 {
     public interface IMealCreateService
     {
-        Task CreateNewMeal(Data.Models.Meal meal);
+        Task<bool> CreateNewMeal(Data.Models.Meal meal);
     }
 }

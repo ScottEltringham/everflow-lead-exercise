@@ -1,5 +1,4 @@
-﻿
-using CalorieWise.Api.Data;
+﻿using CalorieWise.Api.Data;
 using CalorieWise.Api.Data.Models;
 using CalorieWise.Api.Data.Repositories.Interfaces;
 
@@ -11,7 +10,7 @@ namespace CalorieWise.Api.Features.Meal.ReadAll.V1
         {
             var meals = readRepository.GetAllQueryable(x => x.AccountId == new AccountId(request.AccountId));
 
-            return meals;
+            return meals.ToList();
         }
     }
 }

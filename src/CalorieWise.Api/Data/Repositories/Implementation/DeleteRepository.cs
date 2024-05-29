@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CalorieWise.Api.Data.Repositories.Implementation
 {
-    public class DeleteRepository<TId, TDbContext>(DbContext context) : IDeleteRepository<TId, TDbContext>
+    public class DeleteRepository<TId, TDbContext>(TDbContext context) : IDeleteRepository<TId, TDbContext>
         where TId : struct
         where TDbContext : DbContext
     {
