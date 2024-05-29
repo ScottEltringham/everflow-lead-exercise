@@ -6,30 +6,15 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CalorieWise.Api.IntegrationTests.Helpers
 {
-    [DisableWafCache]
-    public class CalorieWiseApiFixture : AppFixture<Program>
+    public class BaseSut : AppFixture<Program>
     {
         private readonly string _connectionString = "server=localhost;Database=CalorieWise.IntegrationTests;Trusted_Connection=True;TrustServerCertificate=True;";
-        private IServiceProvider _serviceProvider;
+        public IServiceProvider _serviceProvider;
 
         protected override async Task SetupAsync()
         {
             var context = _serviceProvider.GetRequiredService<CalorieWiseDbContext>();
             await context.Database.EnsureCreatedAsync();
-
-            context.Accounts.Add(new Data.Models.Account()
-            {
-                FirstName = "Test",
-                LastName = "User",
-                Username = "TestUser",
-                Password = PasswordHelper.HashPassword("SuperSecretPassword123!")
-            });
-            await context.SaveChangesAsync();
-
-            var jwtToken = _serviceProvider.GetRequiredService<IJWTTokenGenerator>();
-            var bearerToken = jwtToken.GenerateToken("TestUser");
-
-            Client = CreateClient(c => c.DefaultRequestHeaders.Authorization = new("Bearer", bearerToken));
         }
 
         protected override void ConfigureServices(IServiceCollection services)

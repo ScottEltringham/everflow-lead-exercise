@@ -1,6 +1,6 @@
 ﻿namespace CalorieWise.Api.Features.Meal.ReadAll.V1
 {
-    internal sealed class MealReadAllEndpoint(IMealReadAllService service) : Endpoint<MealReadAllRequest, IEnumerable<MealReadAllResponse>, MealReadAllMapper>
+    public sealed class MealReadAllEndpoint(IMealReadAllService service) : Endpoint<MealReadAllRequest, IEnumerable<MealReadAllResponse>, MealReadAllMapper>
     {
         public override void Configure()
         {

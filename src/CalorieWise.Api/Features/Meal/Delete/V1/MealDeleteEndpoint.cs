@@ -1,6 +1,6 @@
 ﻿namespace CalorieWise.Api.Features.Meal.Delete.V1
 {
-    internal sealed class MealDeleteEndpoint(IMealDeleteService service) : Endpoint<MealDeleteRequest, MealDeleteResponse>
+    public sealed class MealDeleteEndpoint(IMealDeleteService service) : Endpoint<MealDeleteRequest, MealDeleteResponse>
     {
         public override void Configure()
         {

@@ -9,7 +9,7 @@ using Xunit;
 
 namespace CalorieWise.Api.IntegrationTests.Features.Account.Login.V1
 {
-    public class AccountLoginEndpointTests(CalorieWiseApiFixture app) : TestBase<CalorieWiseApiFixture>
+    public class AccountLoginEndpointTests(BaseSut app) : TestBase<BaseSut>
     {
         [Fact]
         public async Task AccountLoginEndpoint_ShouldReturnToken_WhenCredentialsAreValid()

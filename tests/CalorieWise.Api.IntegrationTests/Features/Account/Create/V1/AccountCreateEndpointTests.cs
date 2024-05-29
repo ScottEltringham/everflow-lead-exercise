@@ -9,7 +9,7 @@ using ProblemDetails = FastEndpoints.ProblemDetails;
 
 namespace CalorieWise.Api.IntegrationTests.Features.Account.Create.V1
 {
-    public class AccountCreateEndpointTests(CalorieWiseApiFixture app) : TestBase<CalorieWiseApiFixture>
+    public class AccountCreateEndpointTests(BaseSut app) : TestBase<BaseSut>
     {
         [Fact]
         public async Task AccountCreateEndpoint_ShouldReturnOk_WhenAccountIsCreated()
@@ -24,7 +24,7 @@ namespace CalorieWise.Api.IntegrationTests.Features.Account.Create.V1
 
             httpResponse.StatusCode.Should().Be(HttpStatusCode.OK);
             dataResponse.Should().NotBeNull();
-            dataResponse.Message.Should().Be("Account created AccountId { Value = 2 }");
+            dataResponse.Message.Should().Be("Account created AccountId { Value = 1 }");
         }
 
         [Fact]

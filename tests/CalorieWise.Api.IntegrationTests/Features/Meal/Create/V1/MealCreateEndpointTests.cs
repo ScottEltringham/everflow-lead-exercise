@@ -1,5 +1,4 @@
 ﻿using CalorieWise.Api.Features.Meal.Create.V1;
-using CalorieWise.Api.IntegrationTests.Helpers;
 using FastEndpoints;
 using FastEndpoints.Testing;
 using FluentAssertions;
@@ -8,7 +7,7 @@ using Xunit;
 
 namespace CalorieWise.Api.IntegrationTests.Features.Meal.Create.V1
 {
-    public class MealCreateEndpointTests(CalorieWiseApiFixture app) : TestBase<CalorieWiseApiFixture>
+    public class MealCreateEndpointTests(Sut app) : TestBase<Sut>
     {
         [Fact]
         public async Task MealCreateEndpoint_ShouldCreateMeal_WhenRequestIsValid()

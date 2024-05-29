@@ -1,7 +1,4 @@
-﻿using CalorieWise.Api.Features.Account.Create.V1;
-using CalorieWise.Api.Features.Meal.Update.V1;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.Identity.Client;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace CalorieWise.Api.Features.Meal.Update.V1
 {

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CalorieWise.Api.UnitTest.Fakes
 {
-    public class FakeDeleteRepository<T, TId, TDbContext>(List<T> entities) : IDeleteRepository<TId, TDbContext>
+    public class FakeDeleteRepository<T, TId, TDbContext>(List<T> entities) : IDeleteRepository<T, TId, TDbContext>
         where T : class, IEntity<TId>
         where TId : struct
         where TDbContext : DbContext

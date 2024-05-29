@@ -6,8 +6,8 @@ namespace CalorieWise.Api.Data.Repositories.Interfaces
     ICreateRepository<T, TDbContext>,
     IReadRepository<T, TId, TDbContext>,
     IUpdateRepository<T, TDbContext>,
-    IDeleteRepository<TId, TDbContext>
-        where T : class
+    IDeleteRepository<T, TId, TDbContext>
+        where T : class, IEntity<TId>
         where TId : struct
         where TDbContext : DbContext
     {

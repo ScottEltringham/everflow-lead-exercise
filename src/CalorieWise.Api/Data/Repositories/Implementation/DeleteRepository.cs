@@ -3,11 +3,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CalorieWise.Api.Data.Repositories.Implementation
 {
-    public class DeleteRepository<TId, TDbContext>(TDbContext context) : IDeleteRepository<TId, TDbContext>
+    public class DeleteRepository<T, TId, TDbContext>(TDbContext context) : IDeleteRepository<T, TId, TDbContext>
+        where T : class, IEntity<TId>
         where TId : struct
         where TDbContext : DbContext
     {
-        private readonly DbSet<object> _dbSet = context.Set<object>();
+        private readonly DbSet<T> _dbSet = context.Set<T>();
 
         public async Task DeleteAsync(TId id)
         {

@@ -35,7 +35,7 @@ builder.Services.AddDbContext<CalorieWiseDbContext>(
 builder.Services.AddScoped(typeof(ICreateRepository<,>), typeof(CreateRepository<,>));
 builder.Services.AddScoped(typeof(IReadRepository<,,>), typeof(ReadRepository<,,>));
 builder.Services.AddScoped(typeof(IUpdateRepository<,>), typeof(UpdateRepository<,>));
-builder.Services.AddScoped(typeof(IDeleteRepository<,>), typeof(DeleteRepository<,>));
+builder.Services.AddScoped(typeof(IDeleteRepository<,,>), typeof(DeleteRepository<,,>));
 
 // Add Services
 builder.Services.AddScoped<IJWTTokenGenerator, JWTTokenGenerator>();

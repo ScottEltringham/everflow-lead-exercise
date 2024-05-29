@@ -1,6 +1,6 @@
 ﻿namespace CalorieWise.Api.Features.Meal.Delete.V1
 {
-    internal interface IMealDeleteService
+    public interface IMealDeleteService
     {
         Task DeleteMealAsync(MealDeleteRequest r);
     }
